@@ -16,7 +16,10 @@ const argv = yargs.options({
 .alias("help","h")
 .argv;
 
-//encode method to replace space in string
-var encodedAddress = encodeURIComponent(argv.address);
-
-geocode.requestAPI(encodedAddress)
+geocode.requestAPI(argv.address, (errorMessage, results) => {
+  if(errorMessage) {
+    console.log(errorMessage)
+  } else {
+    console.log(JSON.stringify(results, undefined,2))
+  }
+})
