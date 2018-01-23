@@ -6,6 +6,7 @@ var requestAPI = (address, callback) => {
   //encode method to replace space in string
   var encodedAddress = encodeURIComponent(address);
 
+// API request
   request({
     url : `http://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}`,
     json: true}
@@ -19,7 +20,7 @@ var requestAPI = (address, callback) => {
         callback(undefined, {
           address: body.results[0].formatted_address,
           latitude: body.results[0].geometry.location.lat,
-          longitude: body.results[0].geometry.location.lng
+          longitude: body.results[0].geometry.location.lng,
         })
       } else {
         callback("Something went wrong ")
